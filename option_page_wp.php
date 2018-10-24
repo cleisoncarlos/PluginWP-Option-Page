@@ -1,220 +1,260 @@
-<?php get_header(); ?>
-<div class="bg_topo">
-	<div class="container content_box">
-		<div class="col-lg-3 col-md-6 box_azul" data-aos="fade-down">
-			<div class="txt_box">
-				<img class="center-block" src="<?php echo esc_url( get_template_directory_uri()); ?>/images/icon1.png" alt="">
-				<br>
-				<p><strong><?php echo esc_attr( get_option( 'service_titulo_01' ) ); ?></strong></p>
-				<hr>
-				<p><?php echo esc_attr( get_option( 'service_texto_01' ) ); ?></p>
-			</div>
-		</div>
+<?php
+/*
+Plugin Name: Options Page - CleisonCarlos
+Plugin URI: http://cleisoncarlos.com
+Description: This is my awesome plugin :/
+Author: Cleison Carlos
+Version: 0.1
+Author URI: http://cleisoncarlos.com
+*/
+ 
+add_action('admin_menu', function() {
+    add_options_page( 'My awesome plugin settings', 'Página Inicial', 'manage_options', 'my-awesome-plugin', 'my_awesome_plugin_page' );
+});
+ 
+ 
+add_action( 'admin_init', function() {
+    register_setting( 'my-awesome-plugin-settings', 'map_option_1' );
+    register_setting( 'my-awesome-plugin-settings', 'map_option_2' );
 
-		<div class="col-lg-3 col-md-6 box_azul2" data-aos="fade-down">
-			<div class="txt_box">
-				<img class="center-block" src="<?php echo esc_url( get_template_directory_uri()); ?>/images/icon2.png" alt="">
-				<br>
-				<p><strong><?php echo esc_attr( get_option( 'service_titulo_02' ) ); ?></strong></p>
-				<hr>
-				<p><?php echo esc_attr( get_option( 'service_texto_02' ) ); ?></p>
-			</div>
-		</div>
-		<div class="col-lg-3 col-md-6 box_azul" data-aos="fade-down">
-			<div class="txt_box">
-				<img class="center-block" src="<?php echo esc_url( get_template_directory_uri()); ?>/images/icon3.png" alt="">
-				<br>
-				<p><strong><?php echo esc_attr( get_option( 'service_titulo_03' ) ); ?></strong></p>
-				<hr>
-				<p><?php echo esc_attr( get_option( 'service_texto_03' ) ); ?></p>
-			</div>
-		</div>
 
-		<div class="col-lg-3 col-md-6 box_azul2" data-aos="fade-down">
-			<div class="txt_box">
-				<img class="center-block" src="<?php echo esc_url( get_template_directory_uri()); ?>/images/icon4.png" alt="">
-				<br>
-				<p><strong><?php echo esc_attr( get_option( 'service_titulo_04' ) ); ?></strong></p>
-				<hr>
-				<p><?php echo esc_attr( get_option( 'service_texto_04' ) ); ?></p>
-			</div>
-		</div>
-	</div>
+    // editados
+    register_setting( 'my-awesome-plugin-settings', 'service_titulo_01' );
+    register_setting( 'my-awesome-plugin-settings', 'service_texto_01' );
+
+    register_setting( 'my-awesome-plugin-settings', 'service_titulo_02' );
+    register_setting( 'my-awesome-plugin-settings', 'service_texto_02' );
+
+    register_setting( 'my-awesome-plugin-settings', 'service_titulo_03' );
+    register_setting( 'my-awesome-plugin-settings', 'service_texto_03' );
+
+    register_setting( 'my-awesome-plugin-settings', 'service_titulo_04' );
+    register_setting( 'my-awesome-plugin-settings', 'service_texto_04' );
+
+
+
+    // sessao 03
+    register_setting( 'my-awesome-plugin-settings', 'service2_titulo_01' );
+    register_setting( 'my-awesome-plugin-settings', 'service2_texto_01' );
+
+    register_setting( 'my-awesome-plugin-settings', 'service2_titulo_02' );
+    register_setting( 'my-awesome-plugin-settings', 'service2_texto_02' );
+
+    register_setting( 'my-awesome-plugin-settings', 'service2_titulo_03' );
+    register_setting( 'my-awesome-plugin-settings', 'service2_texto_03' );
+
+    register_setting( 'my-awesome-plugin-settings', 'service2_titulo_04' );
+    register_setting( 'my-awesome-plugin-settings', 'service2_texto_04' );
+
+
+
+});
+ 
+ 
+function my_awesome_plugin_page() {
+  ?>
+<div class="wrap">
+    <form action="options.php" method="post">
+
+        <?php
+          settings_fields( 'my-awesome-plugin-settings' );
+          do_settings_sections( 'my-awesome-plugin-settings' );
+        ?>
+        <table>
+            <h1>Página Inicial - Dentista</h1>
+            <hr>
+
+            <th>
+            <td>
+                <h1>Sessao 01</h1>
+                <hr>
+            </td>
+            </th>
+
+            <tr>
+                <th>Titulo 01:</th>
+                <td><input type="text" placeholder="Título" name="service_titulo_01" value="<?php echo esc_attr( get_option('service_titulo_01') ); ?>"
+                        size="50" /></td>
+            </tr>
+            <tr>
+                <th>Texto 01:</th>
+                <td><textarea placeholder="Texto" name="service_texto_01" rows="2" cols="50"><?php echo esc_attr( get_option('service_texto_01') ); ?></textarea></td>
+
+            </tr>
+
+            <th>
+                <hr>
+            </th>
+
+            <tr>
+                <th>Titulo 02:</th>
+                <td><input type="text" placeholder="Título" name="service_titulo_02" value="<?php echo esc_attr( get_option('service_texto_02') ); ?>"
+                        size="50" /></td>
+            </tr>
+            <tr>
+                <th>Texto 02:</th>
+                <td><textarea placeholder="Texto" name="service_texto_02" rows="2" cols="50"><?php echo esc_attr( get_option('service_texto_02') ); ?></textarea></td>
+            </tr>
+
+            <th>
+                <hr>
+            </th>
+
+            <tr>
+                <th>Titulo 03:</th>
+                <td><input type="text" placeholder="Título" name="service_titulo_03" value="<?php echo esc_attr( get_option('service_titulo_03') ); ?>"
+                        size="50" /></td>
+            </tr>
+            <tr>
+                <th>Texto 03:</th>
+                <td><textarea placeholder="Texto" name="service_texto_03" rows="2" cols="50"><?php echo esc_attr( get_option('service_texto_03') ); ?></textarea></td>
+            </tr>
+
+            <th>
+                <hr>
+            </th>
+
+            <tr>
+                <th>Titulo 04:</th>
+                <td><input type="text" placeholder="Título" name="service_titulo_04" value="<?php echo esc_attr( get_option('service_titulo_04') ); ?>"
+                        size="50" /></td>
+            </tr>
+            <tr>
+                <th>Texto 04:</th>
+                <td><textarea placeholder="Texto" name="service_texto_04" rows="2" cols="50"><?php echo esc_attr( get_option('service_texto_04') ); ?></textarea></td>
+            </tr>
+
+            <th>
+            <td>
+                <h1>Sessao 02</h1>
+                <hr>
+            </td>
+            </th>
+
+            <tr>
+                <th>Titulo:</th>
+                <td><input type="text" placeholder="Your name" name="map_option_1" value="<?php echo esc_attr( get_option('map_option_1') ); ?>"
+                        size="50" /></td>
+            </tr>
+            <tr>
+                <th>Texto:</th>
+                <td><textarea placeholder="Your bio" name="map_option_2" rows="5" cols="50"><?php echo esc_attr( get_option('map_option_2') ); ?></textarea></td>
+            </tr>
+
+            <!-- <tr>
+                <th>Your age</th>
+                <td>
+
+                    <select name="map_option_3">
+                        <option value="">&mdash; select &mdash;</option>
+                        <option value="10-20" <?php// echo esc_attr( get_option('map_option_3') )=='10-20' ?
+                           // 'selected="selected"' : '' ; ?>>10-30</option>
+                        <option value="20-30" <?php// echo esc_attr( get_option('map_option_3') )=='20-30' ?
+                           // 'selected="selected"' : '' ; ?>>20-30</option>
+                        <option value="30-50" <?php// echo esc_attr( get_option('map_option_3') )=='30-50' ?
+                           // 'selected="selected"' : '' ; ?>>30-50</option>
+                    </select>
+
+                </td>
+            </tr> -->
+
+            <!-- // <tr>
+            //     <th>Your gender</th>
+            //     <td>
+            //         <label>
+            //             <input type="radio" name="map_option_4" value="male" <?php// echo esc_attr(
+            //                 get_option('map_option_4') )=='male' ? 'checked="checked"' : '' ; ?> /> Male <br />
+            //         </label>
+            //         <label>
+            //             <input type="radio" name="map_option_4" value="female" <?php// echo esc_attr(
+            //                 get_option('map_option_4') )=='female' ? 'checked="checked"' : '' ; ?> /> Female
+            //         </label>
+            //     </td>
+            // </tr> -->
+
+            <!-- <tr>
+                <th>Do you love WordPress?</th>
+                <td>
+                    <label>
+                        <input type="checkbox" name="map_option_5" <?php// echo esc_attr( get_option('map_option_5') )=='on'
+                           // ? 'checked="checked"' : '' ; ?> />Yes, I love WordPress
+                    </label><br />
+                    <label>
+                        <input type="checkbox" name="map_option_6" <?php// echo esc_attr( get_option('map_option_6') )=='on'
+                           // ? 'checked="checked"' : '' ; ?> />No, I love WordPress
+                    </label>
+                </td>
+            </tr> -->
+
+            <th>
+            <td>
+                <h1>Sessao 03</h1>
+                <hr>
+            </td>
+            </th>
+
+            <tr>
+                <th>Titulo 01:</th>
+                <td><input type="text" placeholder="Título" name="service2_titulo_01" value="<?php echo esc_attr( get_option('service2_titulo_01') ); ?>"
+                        size="50" /></td>
+            </tr>
+            <tr>
+                <th>Texto 01:</th>
+                <td><textarea placeholder="Texto" name="service2_texto_01" rows="2" cols="50"><?php echo esc_attr( get_option('service2_texto_01') ); ?></textarea></td>
+
+            </tr>
+
+            <th>
+                <hr>
+            </th>
+
+            <tr>
+                <th>Titulo 02:</th>
+                <td><input type="text" placeholder="Título" name="service2_titulo_02" value="<?php echo esc_attr( get_option('service2_texto_02') ); ?>"
+                        size="50" /></td>
+            </tr>
+            <tr>
+                <th>Texto 02:</th>
+                <td><textarea placeholder="Texto" name="service2_texto_02" rows="2" cols="50"><?php echo esc_attr( get_option('service2_texto_02') ); ?></textarea></td>
+            </tr>
+
+            <th>
+                <hr>
+            </th>
+
+            <tr>
+                <th>Titulo 03:</th>
+                <td><input type="text" placeholder="Título" name="service2_titulo_03" value="<?php echo esc_attr( get_option('service2_titulo_03') ); ?>"
+                        size="50" /></td>
+            </tr>
+            <tr>
+                <th>Texto 03:</th>
+                <td><textarea placeholder="Texto" name="service2_texto_03" rows="2" cols="50"><?php echo esc_attr( get_option('service2_texto_03') ); ?></textarea></td>
+            </tr>
+
+            <th>
+                <hr>
+            </th>
+
+            <tr>
+                <th>Titulo 04:</th>
+                <td><input type="text" placeholder="Título" name="service2_titulo_04" value="<?php echo esc_attr( get_option('service2_titulo_04') ); ?>"
+                        size="50" /></td>
+            </tr>
+            <tr>
+                <th>Texto 04:</th>
+                <td><textarea placeholder="Texto" name="service2_texto_04" rows="2" cols="50"><?php echo esc_attr( get_option('service2_texto_04') ); ?></textarea></td>
+            </tr>
+
+            <tr>
+                <td>
+                    <?php submit_button(); ?>
+                </td>
+            </tr>
+
+        </table>
+
+    </form>
 </div>
-<div class="sessao">
-	<div class="container">
-		<div class="col-lg-4 col-md-4 hidenn-sm hidden-xs" data-aos="fade-right">
-			<img class="img-responsive" src="<?php echo esc_url( get_template_directory_uri()); ?>/images/dente.png" alt="dente">
-		</div>
-		<div class="col-lg-8 col-md-8" data-aos="fade-left">
-			<p class="titulo"><?php echo esc_attr( get_option( 'map_option_1' ) ); ?></p>
-			<hr>
-			<p><?php echo esc_attr( get_option( 'map_option_2' ) ); ?></p>
-
-			<button type="button" class="btn btn-info btn-sm pull-right">SAIBA MAIS</button>
-		</div>
-	</div>
-</div>
-
-<div class="sessao">
-	<div class="container">
-		<div class="col-lg-12" data-aos="fade-right">
-			<p class="titulo">Principais serviços</p>
-			<hr>
-		</div>
-
-		<div class="col-lg-6" data-aos="fade-right">
-			<div class="media">
-				<div class="media-left">
-					<a href="#">
-						<img class="media-object" src="<?php echo esc_url( get_template_directory_uri()); ?>/images/icon_1.png" alt="...">
-					</a>
-				</div>
-				<div class="media-body">
-					<h4 class="media-heading"><?php echo esc_attr( get_option( 'service2_titulo_01' ) ); ?></h4>
-					<small><?php echo esc_attr( get_option( 'service2_texto_01' ) ); ?></small>
-				</div>
-			</div>
-			<hr>
-		</div>
-		<div class="col-lg-6" data-aos="fade-right">
-			<div class="media">
-				<div class="media-left">
-					<a href="#">
-						<img class="media-object" src="<?php echo esc_url( get_template_directory_uri()); ?>/images/icon_2.png" alt="...">
-					</a>
-				</div>
-				<div class="media-body">
-					<h4 class="media-heading"><?php echo esc_attr( get_option( 'service2_titulo_02' ) ); ?></h4>
-					<small><?php echo esc_attr( get_option( 'service2_texto_03' ) ); ?></small>
-				</div>
-			</div>
-			<hr>
-		</div>
-		<div class="col-lg-6" data-aos="fade-right">
-			<div class="media">
-				<div class="media-left">
-					<a href="#">
-						<img class="media-object" src="<?php echo esc_url( get_template_directory_uri()); ?>/images/icon_3.png" alt="...">
-					</a>
-				</div>
-				<div class="media-body">
-					<h4 class="media-heading"><?php echo esc_attr( get_option( 'service2_titulo_03' ) ); ?></h4>
-					<small><?php echo esc_attr( get_option( 'service2_texto_03' ) ); ?></small>
-				</div>
-			</div>
-			<hr>
-		</div>
-		<div class="col-lg-6" data-aos="fade-right">
-			<div class="media">
-				<div class="media-left">
-					<a href="#">
-						<img class="media-object" src="<?php echo esc_url( get_template_directory_uri()); ?>/images/icon_4.png" alt="...">
-					</a>
-				</div>
-				<div class="media-body">
-					<h4 class="media-heading"><?php echo esc_attr( get_option( 'service2_titulo_04' ) ); ?></h4>
-					<small><?php echo esc_attr( get_option( 'service2_texto_04' ) ); ?></small>
-				</div>
-			</div>
-			<hr>
-		</div>
-	</div>
-</div>
-
-<div class="sessao_equipe">
-	<div class="container">
-
-		<div class="col-lg-12" data-aos="fade-right">
-			<p class="titulo">Nossa equipe de Profissionais</p>
-			<hr>
-		</div>
-		<div class="col-lg-3 col-md-3 col-sm-6" data-aos="fade-down">
-
-			<div class="box_equipe">
-				<img class="img-responsive" src="<?php echo esc_url( get_template_directory_uri()); ?>/images/dentista.jpg" alt="">
-				<hr>
-				<p><strong>Nome do dentista</strong></p>
-				<small>Nisi cupidatat laborum irure aliqua et minim reprehenderit.</small>
-			</div>
-		</div>
-		<div class="col-lg-3 col-md-3 col-sm-6" data-aos="fade-down">
-
-			<div class="box_equipe">
-				<img class="img-responsive" src="<?php echo esc_url( get_template_directory_uri()); ?>/images/dentista.jpg" alt="">
-				<hr>
-				<p><strong>Nome do dentista</strong></p>
-				<small>Nisi cupidatat laborum irure aliqua et minim reprehenderit.</small>
-			</div>
-		</div>
-		<div class="col-lg-3 col-md-3 col-sm-6" data-aos="fade-down">
-
-			<div class="box_equipe">
-				<img class="img-responsive" src="<?php echo esc_url( get_template_directory_uri()); ?>/images/dentista.jpg" alt="">
-				<hr>
-				<p><strong>Nome do dentista</strong></p>
-				<small>Nisi cupidatat laborum irure aliqua et minim reprehenderit.</small>
-			</div>
-		</div>
-		<div class="col-lg-3 col-md-3 col-sm-6" data-aos="fade-down">
-
-			<div class="box_equipe">
-				<img class="img-responsive" src="<?php echo esc_url( get_template_directory_uri()); ?>/images/dentista.jpg" alt="">
-				<hr>
-				<p><strong>Nome do dentista</strong></p>
-				<small>Nisi cupidatat laborum irure aliqua et minim reprehenderit.</small>
-			</div>
-		</div>
-
-	</div>
-</div>
-<div class="sessao">
-	<div class="container">
-		<div class="col-lg-12" data-aos="fade-right">
-			<p class="titulo">Informativos</p>
-			<hr>
-		</div>
-
-		<?php
-		$the_query = new WP_Query(array(
-			//'category_name' => 'editais',
-			'posts_per_page' => 2
-			));
-			while ($the_query->have_posts()) : $the_query->the_post(); ?>
-
-		<div class="col-lg-6 col-md-6" data-aos="fade-down">
-			<div class="media">
-				<div class="media-left">
-					<a href="<?php the_permalink();?>">
-
-						<?php
- if ( has_post_thumbnail() )
- 	the_post_thumbnail('medium_large', array('class' => 'media-object'));
- else
- echo '<img src="'.get_template_directory_uri().'/images/news.jpg" alt="'.get_the_title().'" />';
- ?>
-
-					</a>
-				</div>
-				<div class="media-body">
-					<h4 class="media-heading">
-						<?php the_title();?>
-					</h4>
-					<p><small>
-							<? the_excerpt();?></small></p>
-
-					<a href="<?php the_permalink();?>">
-						<button type="button" class="btn btn-info btn-xs text-right pull-right">LEIA MAIS</button>
-					</a>
-
-				</div>
-			</div>
-			<hr>
-		</div>
-		<?php
-			endwhile;
-			wp_reset_postdata();
-			?>
-	</div>
-</div>
-<?php get_footer();?>
+<?php
+}
