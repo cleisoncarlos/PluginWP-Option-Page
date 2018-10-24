@@ -6,6 +6,5 @@ Simple Plugin Wordpress - Options Page
 ### Just put in your Theme Wordpress
 
 
-
-<?php echo esc_attr( get_option( 'name_function' ) ); ?> 
+'<?php  echo  esc_attr( get_option( 'service2_texto_01' ) ); ?>'`
 
